@@ -1,0 +1,27 @@
+!!! 5
+html(lang="en")
+  head
+    title= 'SMS list'
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css')
+  body
+    .section
+      .container
+        each message in messages
+          .card
+            header.card-header
+              p.card-header-title.has-text-primary= message.id
+            .card-content
+              .content= message.message
+            footer.card-footer.has-text-info.has-text-centered
+              span.card-footer-item
+                strong.is-uppercase from:&nbsp;
+                = message.from
+              span.card-footer-item
+                strong.is-uppercase to:&nbsp;
+                = message.to
+              span.card-footer-item
+                strong.is-uppercase type:&nbsp;
+                span.is-capitalized= message.type
+              span.card-footer-item
+                strong.is-uppercase keyword:&nbsp;
+                = message.keyword
