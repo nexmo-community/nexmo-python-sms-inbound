@@ -1,5 +1,6 @@
 !!! 5
 html(lang="en")
+  meta(charset="utf-8")
   head
     title= 'SMS list'
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css')
@@ -7,21 +8,24 @@ html(lang="en")
     .section
       .container
         each message in messages
-          .card
-            header.card-header
-              p.card-header-title.has-text-primary= message.id
-            .card-content
-              .content= message.message
-            footer.card-footer.has-text-info.has-text-centered
-              span.card-footer-item
-                strong.is-uppercase from:&nbsp;
-                = message.from
-              span.card-footer-item
-                strong.is-uppercase to:&nbsp;
-                = message.to
-              span.card-footer-item
-                strong.is-uppercase type:&nbsp;
-                span.is-capitalized= message.type
-              span.card-footer-item
-                strong.is-uppercase keyword:&nbsp;
-                = message.keyword
+          .columns
+            .column
+              .card
+                header.card-header
+                  p.card-header-title.has-text-primary= message.id
+                .card-content
+                  .media
+                    .media-left
+                      figure.image.is-48x48
+                        img(src='https://api.adorable.io/avatars/48/' + message.from + '.png')
+                    .media-content
+                      p.title.is-4= "→ " + message.from
+                      p.subtitle.is-6= "← " + message.to
+                  .content= message.message
+                footer.card-footer.has-text-info.has-text-centered
+                  span.card-footer-item
+                    strong.is-uppercase type:&nbsp;
+                    span.is-capitalized= message.type
+                  span.card-footer-item
+                    strong.is-uppercase keyword:&nbsp;
+                    = message.keyword
